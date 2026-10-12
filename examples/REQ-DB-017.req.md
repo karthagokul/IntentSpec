@@ -1,50 +1,35 @@
 ---
-schema: "reqmd-draft-0.1"
+reqmd: "0.1"
 id: REQ-DB-017
 title: Context change notification
 type: performance
 status: draft
-priority: critical
+priority: must
 component: databus
-origin:
-  kind: human-proposed-example
-trace:
-  depends_on:
-    - REQ-DB-003
-  verified_by:
-    - TEST-DB-017
+source: "Fictional example; stakeholder confirmation pending"
 ---
 
 # REQ-DB-017 — Context change notification
 
-> **Fictional example, not an approved product requirement.** Referenced IDs are illustrative and intentionally unresolved.
-
-## Requirement
+## Statement
 
 When a Context property update commits, the DataBus **SHALL** notify each eligible local subscriber of the changed property.
 
-Under the stated benchmark conditions, the **99th percentile notification latency SHALL be at most 2 ms**.
+Under the specified benchmark workload, the **99th percentile notification latency SHALL be at most 2 ms**.
 
-## Terms and measurement
+## Definitions
 
-- **Local subscriber:** UNDEFINED — requires clarification before implementation.
-- **Latency start:** the commit point of the property update (proposed).
-- **Latency end:** receipt of the notification by a subscriber (proposed).
-- **Measurement population:** notifications for eligible subscribers under the specified benchmark workload.
+- **Local subscriber:** UNDEFINED — requires clarification before approval.
+- **Notification latency:** proposed start at update commit and end at notification receipt; confirmation required.
 
-## Conditions
+## Preconditions
 
-| Parameter | Illustrative value |
-| --- | ---: |
-| Local subscribers | 100 |
-| Property updates per second | 10,000 |
-| p99 notification latency | <= 2 ms |
+- The subscriber is registered for the property.
+- The property update commits successfully.
 
-## Rationale
+## Diagrams
 
-Low-latency notification may be needed by local control components. This rationale must be confirmed by a stakeholder.
-
-## Behavior diagram
+### D-01: Notification interaction
 
 ```mermaid
 sequenceDiagram
@@ -56,44 +41,37 @@ sequenceDiagram
     D-->>S: change notification
 ```
 
-> Diagram is **informative** in this draft; prose and approved typed constraints would be normative.
+This diagram is informative.
 
-## Acceptance criteria
+## Acceptance Criteria
 
-```gherkin
-Feature: Context change notification
-  Scenario: Notify an eligible subscriber after an update
-    Given an eligible local subscriber is subscribed to a Context property
-    When an update to the property commits
-    Then the subscriber receives a notification of the changed property
-```
+### AC-01: Notify subscribed client
 
-- **Positive:** all eligible subscribers receive the notification.
-- **Negative:** ineligible or unsubscribed clients do not receive it.
-- **Boundary:** p99 latency is at most 2 ms under the benchmark conditions.
-- **Unresolved:** define eligibility, failure handling, notification ordering and benchmark hardware.
+Given an eligible local subscriber registered for a property, when the property update commits, then the subscriber receives a notification of the changed property.
+
+### AC-02: Benchmark latency
+
+Under a benchmark with 100 local subscribers and 10,000 property updates per second, the p99 notification latency shall not exceed 2 ms.
+
+## Rationale
+
+Low-latency notifications may be needed by local control components; this rationale has not been confirmed by a stakeholder.
+
+## Open Questions
+
+- What exactly qualifies as a *local* subscriber?
+- Are notifications guaranteed to be delivered, or best effort?
+- How are ordering, disconnections, and backpressure handled?
+- Which hardware, runtime and measurement method define the benchmark?
 
 ## Verification
 
-- **Method:** benchmark + automated functional tests.
-- **Oracle:** independent test suite `TEST-DB-017` (not yet implemented).
-- **Evidence:** not available.
-- **Result:** not run.
-
-## Assumptions and questions
-
-1. What exactly qualifies as a *local* subscriber?
-2. Is notification ordering guaranteed for rapid successive updates?
-3. What happens when a subscriber is slow or disconnects?
-4. Does "each" imply delivery guarantees or best-effort delivery?
-5. Which machine, runtime and measurement methodology define the benchmark?
+**Planned method:** integration test and benchmark. No independent tests or evidence exist yet.
 
 ## Traceability
 
-- Depends on: `REQ-DB-003` (placeholder)
-- Verified by: `TEST-DB-017` (placeholder)
-- Implementation: not assigned
+Dependencies and test links will be assigned after clarification. Earlier placeholder IDs are intentionally omitted from typed traceability so this draft can be structurally valid.
 
-## Agent interpretation gate
+## Agent Guidance
 
-The agent **must request clarification** on the undefined term "local subscriber" and delivery semantics before treating this requirement as implementable.
+The agent must request clarification on the meaning of local subscriber and delivery semantics before implementing this draft as an approved requirement.
