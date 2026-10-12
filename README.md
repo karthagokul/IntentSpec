@@ -1,12 +1,12 @@
-# ReqMD — Requirements Proposal
+# IntentSpec — Requirements Proposal
 
 Research workspace and **experimental Python prototype** for a human-readable, AI-agent-consumable software requirements language.
 
-**Current state:** draft **ReqMD v0.1 profile**, working parser/validator and JSON exporter, two example requirements with Mermaid diagrams, and automated conformance tests. **Not** a published standard, verified requirements corpus, semantic prover, or evaluated research result.
+**Current state:** draft **IntentSpec v0.1 profile**, working parser/validator and JSON exporter, two example requirements with Mermaid diagrams, and automated conformance tests. **Not** a published standard, verified requirements corpus, semantic prover, or evaluated research result.
 
 ## Read the draft language
 
-- [ReqMD v0.1 language specification](docs/07-reqmd-v0.1-spec.md) — syntax, reserved Markdown headings, authority model, diagram/acceptance IDs, and structural validation.
+- [IntentSpec v0.1 language specification](docs/07-intentspec-v0.1-spec.md) — syntax, reserved Markdown headings, authority model, diagram/acceptance IDs, and structural validation.
 - [Atomic update example](examples/REQ-DB-018.req.md) — structured, in-review functional requirement with Mermaid, acceptance criteria and verification plan.
 - [Notification example](examples/REQ-DB-017.req.md) — draft performance requirement that intentionally retains unresolved questions.
 - [Concept inventory](docs/02-concept-inventory.md) — ideas to assess before expanding the language.
@@ -17,9 +17,9 @@ Requires Python 3.10 or newer:
 
 ```bash
 python -m pip install -e .
-reqmd validate examples
-reqmd validate examples --json
-reqmd export-json examples --output requirements.json
+intentspec validate examples
+intentspec validate examples --json
+intentspec export-json examples --output requirements.json
 python -m unittest discover -s tests -v
 ```
 
@@ -58,4 +58,4 @@ Existing standards and tools—including ISO/IEC/IEEE 29148, OMG ReqIF, EARS, Do
 
 Open an issue or pull request to challenge semantics, propose concepts, add related work, or contribute examples. A particularly useful contribution is a requirement that **looks valid but is ambiguous, contradictory or misleading to an AI agent**: it helps us design stronger review and evaluation methods.
 
-**ReqMD** and `.req.md` remain working names; the v0.1 profile is subject to review.
+**IntentSpec** is a provisional name pending a collision check. The existing `.req.md` file extension is intentionally retained. The Python package, CLI command, YAML version key and JSON version key all use `intentspec`; the repository URL remains unchanged. The v0.1 profile is subject to review.

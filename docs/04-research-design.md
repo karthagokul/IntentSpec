@@ -20,7 +20,7 @@ Assess whether a constrained Markdown requirements profile with typed traceabili
 1. **B0:** Plain Markdown requirements without enforced structure.
 2. **B1:** Markdown with a conventional structured template (e.g. EARS-informed statements).
 3. **B2:** Existing spec-driven development workflow such as GitHub Spec Kit, configured fairly.
-4. **Treatment:** ReqMD candidate profile, with/without agent interpretation gate in an ablation study.
+4. **Treatment:** IntentSpec candidate profile, with/without agent interpretation gate in an ablation study.
 
 The same requirement intent, tools, model versions, budgets and independent tests should be used across conditions where possible. Do not treat a deliberately weak baseline as evidence of superiority.
 
@@ -60,24 +60,27 @@ Where practical, use open-source projects and externally reviewed requirements. 
 - Disclose threats: task representativeness, leakage, author bias, small sample sizes, benchmark contamination and model changes.
 - Use tests written independently of the implementation agent; preserve test and evidence provenance.
 
-## Reference implementation goals
+## Reference implementation status and goals
 
-Python package and CLI (not yet implemented):
-- `reqmd validate` — parse front matter, headings, required fields and typed references;
-- `reqmd lint` — report missing criteria, ambiguous terms and suspicious contradictions (warnings, not proofs);
-- `reqmd export --format json` — canonical intermediate representation;
-- `reqmd export --format html|pdf` — reproducible rendered documents, including Mermaid where supported;
-- `reqmd trace` — graph and coverage reports;
-- `reqmd check-evidence` — validate evidence references and freshness without fabricating results.
+**Implemented in the experimental Python prototype:**
+- `intentspec validate <paths>` — parse front matter, recognized headings, identified acceptance criteria and Mermaid fences, required fields and typed requirement links;
+- `intentspec validate <paths> --json` — machine-readable structural diagnostics;
+- `intentspec export-json <paths> --output requirements.json` — JSON representation of structurally valid requirement sets;
+- GitHub Actions conformance tests and example validation.
 
-Future adapters: ReqIF, JSON Schema/OpenAPI references, CI integration and editor tooling.
+**Not yet implemented:**
+- `intentspec lint` — heuristic quality warnings for missing cases, ambiguous terms and suspicious contradictions (not semantic proofs);
+- HTML/PDF export, diagram rendering, trace graph/coverage reports and evidence freshness checks;
+- ReqIF/OSLC adapters, richer typed constraints, provenance and editor tooling.
+
+Passing structural validation does **not** establish that the requirement is correct, complete or unambiguous.
 
 ## Candidate paper structure (REFSQ Research Preview)
 
 1. Motivation and problem framing
 2. Related work and explicit differentiation
 3. Research questions and design principles
-4. Preliminary ReqMD profile and example
+4. Preliminary IntentSpec profile and example
 5. Python prototype architecture / proof of concept
 6. Proposed evaluation methodology
 7. Limitations, threats and future work

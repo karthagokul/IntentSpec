@@ -6,7 +6,7 @@
 
 | ID | Question | Candidate direction | Status |
 | --- | --- | --- | --- |
-| D01 | Name and extension | Working name ReqMD; `.req.md` | Open |
+| D01 | Name and extension | **IntentSpec** (provisional project/language name); `.req.md` retained as format extension | Provisional |
 | D02 | Markdown dialect | CommonMark core with explicitly specified tables/fences/front matter | Open |
 | D03 | Requirement granularity | One requirement per file initially | Open |
 | D04 | Normative vs informative | Prose + typed constraints normative; Mermaid and examples informative by default | Open |
@@ -28,12 +28,12 @@
 - Select a narrow, falsifiable contribution and realistic evaluation tasks.
 - Decide minimal normative semantics and authority rules.
 
-**Phase B — profile v0.1**
+**Phase B — profile v0.1 (initial draft implemented; further conformance work open)**
 - Specify grammar/metadata schema, required sections, typed relationships and error classes.
 - Write 10–20 examples, including malformed, contradictory and ambiguous cases.
 - Establish a conformance test suite.
 
-**Phase C — Python prototype**
+**Phase C — Python prototype (parser, validator and JSON export implemented; other tools pending)**
 - Implement parse/validate/lint, canonical JSON export and link graph.
 - Add HTML/PDF rendering, Mermaid diagrams, stable cross-references.
 - Keep automated "quality" checks as warnings unless objectively decidable.

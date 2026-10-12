@@ -1,6 +1,6 @@
 # Problem statement — requirements for humans and software agents
 
-> Working notes, 2026-10-12. **Hypotheses, not validated findings.** Working name: **ReqMD**.
+> Working notes, 2026-10-12. **Hypotheses, not validated findings.** Working name: **IntentSpec**.
 
 ## Motivation
 

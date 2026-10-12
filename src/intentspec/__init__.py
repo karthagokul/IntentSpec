@@ -1,4 +1,4 @@
-"""ReqMD 0.1 experimental requirements language tooling."""
+"""IntentSpec 0.1 experimental requirements language tooling."""
 
 from .parser import (
     Diagnostic,

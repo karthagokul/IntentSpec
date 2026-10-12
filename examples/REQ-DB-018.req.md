@@ -1,12 +1,12 @@
 ---
-reqmd: "0.1"
+intentspec: "0.1"
 id: REQ-DB-018
 title: Atomic property update with change record
 type: functional
 status: in_review
 priority: must
 component: databus
-source: "Fictional example for ReqMD syntax review"
+source: "Fictional example for IntentSpec syntax review"
 ---
 
 # REQ-DB-018 — Atomic property update with change record

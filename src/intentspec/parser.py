@@ -1,4 +1,4 @@
-"""Draft ReqMD 0.1 parser and deterministic structural validator.
+"""Draft IntentSpec 0.1 parser and deterministic structural validator.
 
 This module does not establish semantic correctness of natural-language statements,
 execute Mermaid/Gherkin, or certify verification evidence.
@@ -19,7 +19,7 @@ ID_PATTERN = re.compile(r"^REQ-[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-\d{3,}$")
 AC_PATTERN = re.compile(r"^(AC-\d{2,}): (.+)$")
 DIAGRAM_PATTERN = re.compile(r"^(D-\d{2,}): (.+)$")
 
-REQUIRED_FIELDS = {"reqmd", "id", "title", "type", "status"}
+REQUIRED_FIELDS = {"intentspec", "id", "title", "type", "status"}
 OPTIONAL_FIELDS = {"priority", "component", "source", "trace"}
 TYPES = {"functional", "performance", "interface", "security", "safety", "constraint", "quality"}
 STATUSES = {"draft", "in_review", "approved", "deprecated"}
@@ -157,8 +157,8 @@ def _validate_metadata(req: Requirement) -> None:
         if not isinstance(value, str) or not value.strip():
             _add(req, "E_FIELD_TYPE", f"'{key}' must be a nonempty string")
 
-    if "reqmd" in meta and meta["reqmd"] != VERSION:
-        _add(req, "E_VERSION", f"reqmd must be the quoted string '{VERSION}'")
+    if "intentspec" in meta and meta["intentspec"] != VERSION:
+        _add(req, "E_VERSION", f"intentspec must be the quoted string '{VERSION}'")
     if isinstance(meta.get("id"), str) and not ID_PATTERN.fullmatch(meta["id"]):
         _add(req, "E_ID", "invalid requirement ID; expected e.g. REQ-DB-018")
     if isinstance(meta.get("type"), str) and meta["type"] not in TYPES:

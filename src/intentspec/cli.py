@@ -1,4 +1,4 @@
-"""Command-line entry point for the experimental ReqMD profile."""
+"""Command-line entry point for the experimental IntentSpec profile."""
 from __future__ import annotations
 
 import argparse
@@ -11,8 +11,8 @@ from .parser import VERSION, collect_files, validate_files
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        prog="reqmd",
-        description="Validate and export draft ReqMD 0.1 requirements",
+        prog="intentspec",
+        description="Validate and export draft IntentSpec 0.1 requirements",
     )
     subcommands = parser.add_subparsers(dest="command", required=True)
 
@@ -38,7 +38,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             print(
                 json.dumps(
                     {
-                        "reqmd": VERSION,
+                        "intentspec": VERSION,
                         "valid": valid,
                         "files": [doc.path for doc in docs],
                         "diagnostics": [d.to_dict() for d in diagnostics],
@@ -59,7 +59,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 1
 
     payload = {
-        "reqmd": VERSION,
+        "intentspec": VERSION,
         "requirements": [doc.export() for doc in sorted(docs, key=lambda d: d.metadata["id"])],
     }
     output = json.dumps(payload, indent=2, sort_keys=True, ensure_ascii=False) + "\n"

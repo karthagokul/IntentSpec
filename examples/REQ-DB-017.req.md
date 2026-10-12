@@ -1,5 +1,5 @@
 ---
-reqmd: "0.1"
+intentspec: "0.1"
 id: REQ-DB-017
 title: Context change notification
 type: performance

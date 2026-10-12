@@ -1,6 +1,6 @@
 # Agent interpretation, authority and verification
 
-> Candidate protocol, not yet a normative part of ReqMD.
+> Candidate protocol, not yet a normative part of IntentSpec.
 
 ## Core principle
 

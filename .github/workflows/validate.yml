@@ -1,4 +1,4 @@
-name: ReqMD validation
+name: IntentSpec validation
 
 on:
   push:
@@ -17,6 +17,6 @@ jobs:
       - name: Run parser conformance tests
         run: python -m unittest discover -s tests -v
       - name: Validate reference requirements
-        run: reqmd validate examples
+        run: intentspec validate examples
       - name: Check JSON export
-        run: reqmd export-json examples --output /tmp/reqmd.json
+        run: intentspec export-json examples --output /tmp/intentspec.json

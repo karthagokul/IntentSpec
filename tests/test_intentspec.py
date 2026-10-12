@@ -1,4 +1,4 @@
-"""Conformance tests for ReqMD 0.1. Tests assert structural rules, not semantics."""
+"""Conformance tests for IntentSpec 0.1. Tests assert structural rules, not semantics."""
 from __future__ import annotations
 
 import json
@@ -6,8 +6,8 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from reqmd.cli import main
-from reqmd.parser import collect_files, parse_text, validate_files
+from intentspec.cli import main
+from intentspec.parser import collect_files, parse_text, validate_files
 
 
 def sample(
@@ -18,7 +18,7 @@ def sample(
 ) -> str:
     return (
         '---\n'
-        'reqmd: "0.1"\n'
+        'intentspec: "0.1"\n'
         f'id: {identifier}\n'
         'title: Sample\n'
         'type: functional\n'
@@ -74,7 +74,7 @@ class ParseTests(unittest.TestCase):
         self.assertIn("E_YAML", codes(parse_text(text)))
 
     def test_unquoted_version_is_rejected(self) -> None:
-        text = sample().replace('reqmd: "0.1"', "reqmd: 0.1")
+        text = sample().replace('intentspec: "0.1"', "intentspec: 0.1")
         self.assertIn("E_VERSION", codes(parse_text(text)))
 
     def test_invalid_requirement_id(self) -> None:
@@ -193,7 +193,7 @@ class CollectionTests(unittest.TestCase):
             self.assertEqual(main(["export-json", str(folder), "-o", str(output)]), 0)
             parsed = json.loads(output.read_text(encoding="utf-8"))
             self.assertEqual(parsed["requirements"][0]["metadata"]["id"], "REQ-DB-001")
-            self.assertEqual(parsed["reqmd"], "0.1")
+            self.assertEqual(parsed["intentspec"], "0.1")
 
     def test_cli_invalid_returns_failure(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

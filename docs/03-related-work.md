@@ -2,7 +2,7 @@
 
 > Initial desk research as of 2026-10-12. This is **not** a systematic literature review. Source URLs are supplied for verification; detailed novelty claims remain open.
 
-| Work | What it contributes | Relationship to proposed ReqMD | Primary source |
+| Work | What it contributes | Relationship to proposed IntentSpec | Primary source |
 | --- | --- | --- | --- |
 | ISO/IEC/IEEE 29148:2018 | Requirements engineering processes, information items, characteristics and guidance for requirements | Baseline for what a good requirement should contain; a markup format must not replace the engineering process | [ISO](https://www.iso.org/standard/72089.html) |
 | ISO/IEC/IEEE DIS 29148 (draft, 2026) | Revision in development | Check for updated guidance; **not** a published replacement yet | [ISO draft](https://www.iso.org/standard/94091.html) |

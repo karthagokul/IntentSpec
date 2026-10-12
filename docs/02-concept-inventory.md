@@ -1,4 +1,4 @@
-# ReqMD concept inventory (candidate features)
+# IntentSpec concept inventory (candidate features)
 
 > Brainstorming inventory, **not** a frozen schema. P0 = investigate for minimal profile; P1 = possible extension; P2 = future research.
 
