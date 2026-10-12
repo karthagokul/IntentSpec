@@ -1,0 +1,22 @@
+name: ReqMD validation
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install package
+        run: python -m pip install -e .
+      - name: Run parser conformance tests
+        run: python -m unittest discover -s tests -v
+      - name: Validate reference requirements
+        run: reqmd validate examples
+      - name: Check JSON export
+        run: reqmd export-json examples --output /tmp/reqmd.json
